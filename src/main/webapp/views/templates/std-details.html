@@ -1,0 +1,43 @@
+<form  class="form-horizontal" role="form" ng-submit="addStudent(student)" >
+  	
+    	<div class="form-group">
+      		<label class="control-label col-sm-2" for="firstName">First Name:</label>
+      		<div class="col-sm-10">
+       			 <input type="text" ng-model="student.firstName" class="form-control" placeholder="Enter first name" required>
+      		</div>
+    	</div>
+    
+    	<div class="form-group">
+    		<label class="control-label col-sm-2" for="lastName">Last Name:</label>
+      		<div class="col-sm-10">          
+        		<input type="text"  ng-model="student.lastName" class="form-control" placeholder="Enter last name" required>
+      		</div>
+   	    </div>
+   	    
+   	    <div class="form-group">
+    		<label class="control-label col-sm-2" for="email">Email:</label>
+      		<div class="col-sm-10">          
+        		<input type="email"  ng-model="student.email" class="form-control" placeholder="Enter email">
+      		</div>
+   	    </div>
+   	    
+   	     <div class="form-group">
+    		<label class="control-label col-sm-2" for="phone">Phone:</label>
+      		<div class="col-sm-10">          
+        		<input type="text" required="required" ng-model="student.phone" ng-minlength="10" class="form-control" placeholder="Enter phone number">
+      		</div>
+   	    </div>
+    
+    	 <div class="form-group">
+    		<label class="control-label col-sm-2" for="address">Address:</label>
+      		<div class="col-sm-10">          
+        		<input type="text"  ng-model="student.address" class="form-control" placeholder="Enter address">
+      		</div>
+   	    </div>
+    
+    	<div class="form-group">        
+      		<div class="col-sm-offset-2 col-sm-10">
+        		<button   type="submit" value="Save" class="btn btn-primary">Save</button>
+    		</div>
+    	</div>
+</form>

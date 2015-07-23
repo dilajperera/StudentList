@@ -12,5 +12,7 @@ import com.sms.model.Student;
  */
 @Repository("studentRepository")
 public interface StudentRepository extends CrudRepository<Student, String>{
-		Student findByFirstName(String firstName);
+	
+	//query ll be auto generated
+	Student findByFirstName(String firstName);
 }

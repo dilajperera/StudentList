@@ -1,25 +1,24 @@
 angular.module('controllers',['studentService']).
 	controller('studentCtrl', ['$scope','studentFactory',function($scope,studentFactory){
 		
-		
         $scope.studentList = [];
         $scope.student = {};
-        $scope.disabled = 'true';
-		
         getAllStudents();
+        $scope.enabled = false;
         
 		$scope.addStudent = function(student){
-			console.log('new student is to be added');
+			console.log('new student ll be added');
 			console.log(student);
 			studentFactory.addStudent(student);
-			$scope.disabled = 'true';
+			$scope.enabled = !$scope.enabled;
+			$scope.student = {};
 		}
 
 		$scope.editStudent = function(student){
 			console.log('edit a student');
 			$scope.student = student;
 			console.log(student);
-			$scope.disabled = 'false';
+			$scope.enabled = !$scope.enabled;
 		}
 		
 		$scope.deleteStudent = function(deleteStudent){
@@ -37,7 +36,7 @@ angular.module('controllers',['studentService']).
 			
 			$scope.studentList = tempList;
 			studentFactory.deleteStudent(student);
-			
+			$scope.enabled = false;
 		}
 		
 		function getAllStudents(){
@@ -46,9 +45,7 @@ angular.module('controllers',['studentService']).
 				console.log($scope.studentList);
             },
             function(data) {
-                console.log('students retrieval failed.');
+                console.log('students details can not be loaded');
             });
-		};
-		
-		
+		};	
 }]);
