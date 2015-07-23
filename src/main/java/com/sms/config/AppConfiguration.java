@@ -26,13 +26,18 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan("com.sms")
 @EnableWebMvc
 public class AppConfiguration extends WebMvcConfigurerAdapter {
+	
+	private static final String VIEW_INDEX = "index";
+	private static final String URL_SLASH = "/";
+	private static final String VIEWS_PREFIX = "/views/";
+	private static final String VIEWS_SUFFIX = ".html";
     
 	/**
 	 * view and controller for url (/) mapping. 
 	 */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
+        registry.addViewController(URL_SLASH).setViewName(VIEW_INDEX);
     }
     
     /**
@@ -41,10 +46,10 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
      */
     @Bean
     public InternalResourceViewResolver internalResourceViewResolver(){
-    	InternalResourceViewResolver res = new InternalResourceViewResolver();
-         res.setPrefix("/views/");
-         res.setSuffix(".html");
-         return res;
+    	InternalResourceViewResolver iviewResolver = new InternalResourceViewResolver();
+         iviewResolver.setPrefix(VIEWS_PREFIX);
+         iviewResolver.setSuffix(VIEWS_SUFFIX);
+         return iviewResolver;
     }
 
     /**
@@ -60,7 +65,7 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
 	 * 	internal view resolver for .html
 	 * 	json view resolver for rest api
 	 * @param manager
-	 * @return
+	 * @return configured contentNegotiatingViewResolver instance
 	 */
     @Bean
     public ViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {

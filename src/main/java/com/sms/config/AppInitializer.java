@@ -15,6 +15,9 @@ import org.springframework.web.servlet.DispatcherServlet;
  */
 public class AppInitializer implements WebApplicationInitializer {
 	
+	private static final String DISPATCHER = "dispatcher";
+	private static final String URL_SLASH = "/";
+	
 	/**
 	 * configures the servlet mapping for the web application initialization. 
 	 */
@@ -23,8 +26,8 @@ public class AppInitializer implements WebApplicationInitializer {
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 		ctx.register(AppConfiguration.class);
 		ctx.setServletContext(servletContext);
-		Dynamic dynamic = servletContext.addServlet("dispatcher",new DispatcherServlet(ctx));
-		dynamic.addMapping("/");
+		Dynamic dynamic = servletContext.addServlet(DISPATCHER,new DispatcherServlet(ctx));
+		dynamic.addMapping(URL_SLASH);
 		dynamic.setLoadOnStartup(1);
 	}
 	
