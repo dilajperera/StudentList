@@ -8,12 +8,16 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 /**
- * 
+ * This class is responsible for 
+ * web application initialization related configuration .
  * @author Dilaj
  *
  */
 public class AppInitializer implements WebApplicationInitializer {
 	
+	/**
+	 * configures the servlet mapping for the web application initialization. 
+	 */
 	@Override
 	public void onStartup(ServletContext servletContext)throws ServletException {
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();

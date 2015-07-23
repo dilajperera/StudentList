@@ -7,7 +7,8 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 /**
- * 
+ * This class is used to resolve json data 
+ * for the rest api.
  * @author Dilaj
  *
  */

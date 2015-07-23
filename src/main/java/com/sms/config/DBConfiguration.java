@@ -1,5 +1,9 @@
 package com.sms.config;
 
+import java.net.UnknownHostException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +18,13 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import com.mongodb.Mongo;
 import com.sms.repo.StudentRepository;
 /**
+ * This is the DBConfiguration class. 
+ * DBProperties are loaded from the src/main/resources.
+ * The studentRepository is responsible for CRUD operations.
+ * Mongodb is used as the database and spring mongo
+ * templates are configured in this class.
  * 
  * @author Dilaj
- *
  */
 @Configuration
 @EnableMongoRepositories(basePackageClasses = StudentRepository.class)
@@ -37,16 +45,36 @@ public class DBConfiguration {
 	
 	@Value("${mongo.password}")
 	private String password;
+	
+	private static final Logger logger = LogManager.getLogger(DBConfiguration.class);
 
+	/**
+	 * This method configures the spring mongo template.
+	 * if the exception is occured, the bean ll be null.
+	 * Otherwise mongo template bean is created.  
+	 * @return
+	 */
 	@Bean
-	public MongoTemplate mongoTemplate() throws Exception {
-		Mongo mongo = new Mongo(host, port);
-		UserCredentials userCredentials = new UserCredentials(username,password);
-		MongoDbFactory mongoDbFactory = new SimpleMongoDbFactory(mongo, database,userCredentials);
-		MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory);
-		return mongoTemplate;
+	public MongoTemplate mongoTemplate(){
+
+		try {
+			Mongo  mongo = new Mongo(host, port);
+			UserCredentials userCredentials = new UserCredentials(username,password);
+			MongoDbFactory mongoDbFactory = new SimpleMongoDbFactory(mongo, database,userCredentials);
+			MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory);
+			return mongoTemplate;
+		} catch (UnknownHostException e) {
+			logger.debug("Exception has occured while initzalizing mongo db : {}", e);
+		}
+		
+		return null;
 	}
 
+	/**
+	 * This bean configures db.properties with java class attributes.
+	 * static key word is used otherwise values ll be null (very early initzalization). 
+	 * @return
+	 */
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
 		return new PropertySourcesPlaceholderConfigurer();
