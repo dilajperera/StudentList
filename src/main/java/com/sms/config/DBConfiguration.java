@@ -72,7 +72,7 @@ public class DBConfiguration {
 
 	/**
 	 * This bean configures db.properties with java class attributes.
-	 * static key word is used otherwise values ll be null (very early initzalization). 
+	 * static key word is used otherwise values ll be null. 
 	 * @return
 	 */
 	@Bean

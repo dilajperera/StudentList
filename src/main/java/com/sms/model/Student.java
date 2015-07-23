@@ -1,10 +1,14 @@
 package com.sms.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * 
+ * This is the domain model of the Student.
+ * Mongo document db is used.
  * @author Dilaj
  *
  */
@@ -13,10 +17,21 @@ public class Student {
 	
 	@Id
 	private String id;
+	
+	@NotNull
+	@Size(max=100)
 	private String firstName;
+	
+	@NotNull
+	@Size(max=100)
 	private String lastName;
+	
+	@Size(max=100)
 	private String email;
+	
+	@Size(max=200)
 	private String address;
+	
 	private String phone;
 
 	public Student(){}

@@ -28,7 +28,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 public class AppConfiguration extends WebMvcConfigurerAdapter {
     
 	/**
-	 * view and controller for url / mapping. 
+	 * view and controller for url (/) mapping. 
 	 */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
