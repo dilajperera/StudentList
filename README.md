@@ -30,7 +30,9 @@ Please follow these steps to build and deploy the StudentList application.
 					mongo.username=root
 					mongo.password=root
 					
-	4.	Go to inside of the StudentList folder. Open a cmd and execute the command mvn clean install. 		After building process is completed, sms.war will be created inside the target folder. 		(StudentList\target\sms.war).
+	4.	Go to inside of the StudentList folder. Open a cmd and execute the command mvn clean install.
+	
+	5.	After building process is completed, sms.war will be created inside the target folder. 								(StudentList\target\sms.war).
 	
 	5.	Deploy the sms.war in the tomcat 7/8 and use the URL, http://localhost:8080/sms/ to access the 
 		StudentList application.
