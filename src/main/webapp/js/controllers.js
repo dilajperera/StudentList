@@ -4,23 +4,42 @@ angular.module('controllers',['studentService']).
         $scope.studentList = [];
         $scope.student = {};
         getAllStudents();
-        $scope.enabled = false;
+        $scope.enableEditPanel = false;
+        $scope.successMessage = false;
         
+        //to add/update student 
 		$scope.addStudent = function(student){
-			console.log('new student ll be added');
-			console.log(student);
-			studentFactory.addStudent(student);
-			$scope.enabled = !$scope.enabled;
-			$scope.student = {};
+			studentFactory.addStudent(student).then(function(student) {
+				$scope.enableEditPanel = !$scope.enableEditPanel;
+				$scope.student = {};
+				$scope.successMessage = true;
+            },
+            function(data) {
+                console.log('students details can not be saved');
+            });
 		}
+		
+		//to get all details about students
+		function getAllStudents(){
+			studentFactory.getAllStudents().then(function(students) {
+				$scope.studentList = students;
+				console.log($scope.studentList);
+            },
+            function(data) {
+                console.log('students details can not be loaded');
+            });
+		};	
 
+		//to bind update student with scope
 		$scope.editStudent = function(student){
 			console.log('edit a student');
 			$scope.student = student;
 			console.log(student);
-			$scope.enabled = !$scope.enabled;
+			$scope.enableEditPanel = !$scope.enableEditPanel;
+			$scope.successMessage = false;
 		}
 		
+		//to delete a student
 		$scope.deleteStudent = function(deleteStudent){
 			console.log('delete a student');
 			$scope.student = {};
@@ -36,16 +55,7 @@ angular.module('controllers',['studentService']).
 			
 			$scope.studentList = tempList;
 			studentFactory.deleteStudent(student);
-			$scope.enabled = false;
+			$scope.enableEditPanel = false;
 		}
 		
-		function getAllStudents(){
-			studentFactory.getAllStudents().then(function(students) {
-				$scope.studentList = students;
-				console.log($scope.studentList);
-            },
-            function(data) {
-                console.log('students details can not be loaded');
-            });
-		};	
 }]);

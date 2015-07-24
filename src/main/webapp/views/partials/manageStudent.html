@@ -1,29 +1,16 @@
 <!DOCTYPE html>
-<html ng-app="sms">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
-<script src="lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="lib/angular/angular.js"></script>
-
-<!-- custom js -->
-<script src="js/app.js"></script>
-<script src="js/controllers.js"></script>
-<script src="js/services.js"></script>
-</head>
-
-<body>
-
-	<div class="container">
+<div class="container">
 		<div ng-controller="studentCtrl">
 			<!-- std-detail is a custom directive to edit/save student details -->
-			<div ng-if="enabled" std-detail></div>
+			<div ng-if="enableEditPanel" std-detail></div>
+	
 			<div class="container">
 				<div class="col-sm-10">
 					<input class="form-control" placeholder="search..." ng-model="searchText">
 				</div>
 			</div>
-			<br /> <br />
+			<br />
+		
 			<table class="table">
 				<thead>
 					<tr>
@@ -48,8 +35,5 @@
 			</table>
 			<br/>
 		</div>
-	</div>
-
-</body>
-</html>
+</div>
 

@@ -2,6 +2,9 @@ angular.
 module('studentService',[]).
 factory('studentFactory', ['$http','$q', function($http,$q){
 
+	//The service class is responsible to manage CRUD
+	//operations with the REST api.
+	
 	function addStudent(student) {
 		console.log(student);
 		deferred = $q.defer();
