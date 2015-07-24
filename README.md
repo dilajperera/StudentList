@@ -3,7 +3,7 @@
 StudentList is a single page web application to manage details of students. Following technologies/tools are used to implement/deploy/build the application.
 
 	•	RESTful API – Spring, Java EE
-	•	NoSQL Database – Mongo 
+	•	NoSQL Database – Mongo 3.0
 	•	UI – Angular JS Frame Work , HTML, Bootstrap 
 	•	Maven 3.3.1
 	•	TomCat 7/8
@@ -19,7 +19,7 @@ Please follow these steps to build and deploy the StudentList application.
 	1.	Clone the git repository or download the source code as a zip file.
 			Public git url  :  https://github.com/dilajperera/StudentList.git
 
-	2.	If it is the zip file, the extract the zip file. The main folder will be StudentList.
+	2.	If it is the zip file, extract the zip file. The main folder will be the StudentList folder.
 
 	3.	Configure the database settings as required, 
 			Property File location: StudentList\src\main\resources\mongo.properties
